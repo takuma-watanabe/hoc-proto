@@ -6,21 +6,22 @@ import { withDialog, DialogProps } from "./withDialog";
 import * as H from 'history';
 
 export type AdminPagePropsSet =
-    AdminPageProps & AsyncCallHandlerProps & PageTitleProps & 
+    AdminPageProps & AsyncCallHandlerProps & PageTitleProps &
     DialogProps &
     { history: H.History }
 
-export const createAdminPage =
-    <OriginalProps extends {}>(WrappedComponent: React.ComponentType<OriginalProps & AdminPagePropsSet>) => {
-        return (
-            withDialog(
-                withAsyncCallHandler(
-                    withAdminPageTemplate(
-                        withPageTitle(
-                            WrappedComponent
-                        )
+export const createAdminPage = <OriginalProps extends {}>(
+    WrappedComponent: React.ComponentType<OriginalProps & AdminPagePropsSet>
+) => {
+    return (
+        withDialog(
+            withAsyncCallHandler(
+                withAdminPageTemplate(
+                    withPageTitle(
+                        WrappedComponent
                     )
                 )
             )
         )
-    }
+    )
+}
