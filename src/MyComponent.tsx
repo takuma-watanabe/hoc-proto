@@ -34,9 +34,12 @@ class MyComponent extends React.Component<Props & AdminPagePropsSet, State> {
             <button onClick={() => {
                 this.props.history.push('/test2')
             }}>button</button>
+
+            <button onClick={() => {
+                this.props.showDialog(true)
+            }}>dialog</button>
         </div>)
     }
 }
 
-// export default withAdminPageTemplate(withAsyncCallHandler(withPageTitle(MyComponent)))
 export default createAdminPage(MyComponent)

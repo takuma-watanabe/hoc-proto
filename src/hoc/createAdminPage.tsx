@@ -1,19 +1,24 @@
 import React from "react";
 import { withPageTitle, PageTitleProps } from "./withPageTitle";
-import { AdminPageProps, withAdminPageTemplate } from "./withAdminPageTemplate";
+import { withAdminPageTemplate, AdminPageProps } from "./withAdminPageTemplate";
 import { withAsyncCallHandler, AsyncCallHandlerProps } from "./withAsyncCallHandler";
+import { withDialog, DialogProps } from "./withDialog";
 import * as H from 'history';
 
 export type AdminPagePropsSet =
-    AdminPageProps & AsyncCallHandlerProps & PageTitleProps & { history: H.History }
+    AdminPageProps & AsyncCallHandlerProps & PageTitleProps & 
+    DialogProps &
+    { history: H.History }
 
 export const createAdminPage =
     <OriginalProps extends {}>(WrappedComponent: React.ComponentType<OriginalProps & AdminPagePropsSet>) => {
         return (
-            withAsyncCallHandler(
-                withAdminPageTemplate(
-                    withPageTitle(
-                        WrappedComponent
+            withDialog(
+                withAsyncCallHandler(
+                    withAdminPageTemplate(
+                        withPageTitle(
+                            WrappedComponent
+                        )
                     )
                 )
             )
